@@ -1,0 +1,184 @@
+body {
+    background-image: url('Sad.png');
+    /*background-image: url('sadTired.gif');*/
+    /*background-image: url('cry.gif');*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-container{
+    margin-top: 600px;
+    margin-left: 1300px;
+}
+
+.sadButton {
+    padding: 20px 40px;
+    font-size: 70px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.sadButton:hover {
+    background-color: rgba(200, 200, 255, 0.9);
+    transform: scale(1.05);
+}
+
+.cryButton:hover {
+    background-color: rgba(200, 200, 255, 0.9);
+    transform: scale(1.05);
+}
+
+.cryButton {
+    display:none;
+    padding: 15px 50px;
+    width:300px;
+    font-size: 70px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    bottom: 10px;
+}
+
+.cryButton:hover {
+    background-color: rgba(200, 200, 255, 0.9);
+    transform: scale(1.05);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    padding: 20px 20px 40px 40px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 1650px;
+    font-size: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+}
+
+.closeBtn {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    left:500px;
+}
+
+.spotify-embed-container1 {
+    width: 100%;
+    padding-top: 0;
+    display: block;
+    max-width: 400px;
+    position: absolute;
+    top: 10px;
+    left: 1%;
+}
+
+.spotify-embed-container1 iframe {
+    width: 100%;
+    height: 360px;
+    border-radius: 20px;
+    display: block;
+    position: relative;
+    z-index:1;
+}
+
+.spotify-embed-container2 {
+    width: 100%;
+    padding-top: 400px;
+    display: block;
+    max-width: 400px;
+    height:100px;
+    position: absolute;
+    top: 0;
+    left: 1%;
+}
+
+.spotify-embed-container2 iframe {
+    width: 100%;
+    border-radius: 20px;
+    height:360px;
+    display: block;
+    position: relative;
+}
+
+.spotify-embed-container3 {
+    width: 100%;
+    padding-top: 10px;
+    display: block;
+    max-width: 400px;
+    position: absolute;
+    top: 0;
+    left: 75%;
+}
+
+.spotify-embed-container3 iframe {
+    width: 100%;
+    border-radius: 20px;
+    height:360px;
+    display: block;
+    position: relative;
+}
+
+.doneButton {
+    padding: 15px 70px;
+    width:420px;
+    font-size: 70px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    right: 60px;
+    bottom:20px;
+}
+
+.doneButton:hover {
+    background-color: rgba(200, 200, 255, 0.9);
+    transform: scale(1.05);
+}
+
+.homeButton{
+    text-decoration: none;
+    padding: 15px 70px;
+    width:300px;
+    font-size: 70px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    right: 5px;
+    bottom:340px;
+    color: black;
+}
+.homeButton:hover {
+    background-color: rgba(200, 200, 255, 0.9);
+}
