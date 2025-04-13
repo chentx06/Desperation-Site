@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scream Into the Void</title>
+    <link rel="stylesheet" href="scream.css">
+</head>
+<body>
+
+<h1>Scream Into the Void</h1>
+<input type="text" id="screamText" placeholder="Type your scream here...">
+<select id="screamType">
+    <option value="goatScream.mp3">Normal Scream</option>
+    <option value="willhelmScream.mp3">Wilhelm Scream</option>
+    <option value="guyScream.mp3">Guy Scream</option>
+    <option value="girlScream.mp3">Girl Scream</option>
+    <option value="fnafScream.mp3">Fnaf Scream</option>
+    <option value="horrorScream.mp3">Horror Scream</option>
+</select>
+<button id="screamButton">SCREAM</button>
+<a href="homePage.html" id="homeButton">Home</a>
+
+
+<script>
+
+    const messages = [
+        "Glad nobody heard that!",
+        "Feel better now?",
+        "That one echoed through space.",
+        "Therapist would be proud.",
+        "The void accepts your offering.",
+        "Nice lungs.",
+        "Screaming is self-care.",
+        "That scream just healed your soul.",
+        "The universe screamed back a little."
+    ];
+
+    document.getElementById('screamButton').addEventListener('click', () => {
+        const text = document.getElementById('screamText').value;
+        const sound = document.getElementById('screamType').value;
+        if (!text) return;
+
+        const screamDiv = document.createElement('div');
+        screamDiv.textContent = text;
+        screamDiv.className = 'scream-animation';
+        document.body.appendChild(screamDiv);
+
+        setTimeout(() => {
+            screamDiv.remove();
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        }, 1500);
+
+        const audio = new Audio(sound);
+        audio.play();
+
+        document.getElementById('screamText').value = '';
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="sigh.css">
+</head>
+
+<body>
+    <h1>Take a Deep Sigh</h1>
+    <div id = "breathingCircle"></div>
+    <button id="startButton">Breathe</button>
+    <button id="stopButton" style="display: none;">Stop</button>
+    <a href="homePage.html" id="homeButton">Home</a>
+
+
+
+    <script>
+        const inhaleAudio = new Audio('breathIn.mp3');
+        const exhaleAudio = new Audio('breathOut.mp3');
+        let isInhale = true;
+        let breathInterval = null;
+
+        function breatheCycle() {
+            if (isInhale) {
+                inhaleAudio.play();
+            } else {
+                exhaleAudio.play();
+            }
+            isInhale = !isInhale;
+        }
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            breatheCycle();
+            breathInterval = setInterval(breatheCycle, 4000);
+            document.getElementById('startButton').style.display = 'none';
+            document.getElementById('stopButton').style.display = 'inline-block';
+        });
+
+        document.getElementById('stopButton').addEventListener('click', () => {
+            clearInterval(breathInterval);
+            inhaleAudio.pause();
+            exhaleAudio.pause();
+            inhaleAudio.currentTime = 0;
+            exhaleAudio.currentTime = 0;
+            document.getElementById('startButton').style.display = 'inline-block';
+            document.getElementById('stopButton').style.display = 'none';
+        });
+    </script>
+
+
+
+
+
+</body>
+
+
+</html>

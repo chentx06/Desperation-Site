@@ -1,0 +1,80 @@
+body {
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 100px;
+    text-shadow: 0 0 40px red;
+}
+
+#screamText {
+    width: 400px;
+    padding:20px;
+    font-size: 30px;
+}
+
+#screamType {
+    margin: 20px;
+    font-size: 40px;
+}
+
+#screamButton {
+    padding: 10px 20px;
+    font-size: 40px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.scream-animation {
+    position: absolute;
+    font-size: 2em;
+    animation: explode 3s forwards;
+    pointer-events: none;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+        left: 50%;
+        top: 50%;
+    }
+    100% {
+        transform: scale(4) rotate(720deg);
+        opacity: 0;
+        left: calc(50% + 200px);
+        top: calc(50% - 200px);
+    }
+}
+
+#homeButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 60px;
+    text-decoration: none;
+    box-shadow: 0 0 10px red;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#homeButton:hover {
+    transform: scale(1.1);
+    background: red;
+    color: white;
+}

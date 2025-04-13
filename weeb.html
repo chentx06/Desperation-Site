@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weeb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="weeb.css">
+</head>
+<body>
+
+<div class="video-background">
+    <video id="background-video" loop>
+    </video>
+</div>
+
+<div class="content">
+    <h1>Welcome to some motivation!</h1>
+    <p>Press for a surprise!</p>
+    <button id="start-button">Let's Go!</button>
+</div>
+<a href="homePage.html" class="home-button">Home</a>
+
+
+<script>
+    const mediaSources = [
+        {
+            video: 'JUJUTSU%20KAISEN%20-%20Ending%20_%20Lost%20in%20Paradise%20feat.%20AKLO.mp4',
+            quote: '"I Don\'t Know How I\'ll Feel When I\'m Dead, But I Don\'t Want To Regret The Way I Lived." - Yuji Itadori'
+        },
+        {
+            video: 'OnePieceOp2.mp4',
+            quote: '“Only those who have suffered long can see the light within the shadows.” – Roronoa Zoro'
+        },
+        {
+            video: 'HeroesComeBack.mp4',
+            quote: '“Failing doesn’t give you a reason to give up, as long as you believe.” – Naruto Uzumaki'
+        },
+        {
+            video: 'unravel.mp4',
+            quote: '"The world runs on power. Everything is determined by the superior power. You are weak. That is why you lose" - Ayato Kirishima'
+        },
+        {
+            video: 'demonSlayer.mp4',
+            quote: '“It is okay to do things a little differently.” - Tengen Uzui'
+        }
+    ];
+
+    function getRandomMedia() {
+        const randomIndex = Math.floor(Math.random() * mediaSources.length);
+        return mediaSources[randomIndex];
+    }
+
+    document.getElementById('start-button').addEventListener('click', function() {
+        const { video, audio, quote } = getRandomMedia();
+
+        const videoElement = document.getElementById('background-video');
+        videoElement.innerHTML = `<source src="${video}" type="video/mp4">`;
+
+        videoElement.load();
+        videoElement.play();
+
+        alert(quote);
+    });
+</script>
+
+</body>
+</html>
