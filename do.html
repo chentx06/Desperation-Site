@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Just Do It</title>
+    <link rel="stylesheet" href="do.css">
+</head>
+<body>
+
+<!-- Backgrounds Button and Menu -->
+<button id="backgroundsButton">🎨</button>
+<div id="backgrounds">
+    <button onclick="setRandomBackground('anime')">Anime</button>
+    <button onclick="setRandomBackground('nature')">Nature</button>
+    <button onclick="setRandomBackground('library')">Library</button>
+    <button onclick="setRandomBackground('office')">Office</button>
+    <button onclick="setRandomBackground('city')">City</button>
+    <button onclick="setRandomBackground('colours')">Colours</button>
+</div>
+
+<!-- Pomodoro Timer -->
+<div id="timer-container">
+    <header>Pomodoro Timer</header>
+    <div id="time">25:00</div>
+    <div id="controls">
+        <button id="startBtn">Start</button>
+        <button id="resetBtn">Reset</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="chaosBtn">Chaos</button>
+        <!-- Custom Time Input -->
+        <input type="number" id="customTime" placeholder="Minutes" min="1" class="setTimeBox"/>
+        <button id="setCustomTimeBtn" >Set Time</button>
+    </div>
+</div>
+
+<div id="spotifyContainer12" class="spotify-embed-container">
+    <iframe src="https://open.spotify.com/embed/playlist/09WR21875BqtXHEJFaqWYG?utm_source=generator"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+    </iframe>
+</div>
+
+<a href="homePage.html" id="homeButton">Home</a>
+
+<script>
+    // Background Change Functionality
+    const backgrounds = {
+        anime: [
+            'url(https://wallpapercat.com/w/full/5/3/1/141742-3840x2160-desktop-4k-naruto-wallpaper-photo.jpg)',
+            'url(https://wallpapercat.com/w/full/3/a/3/5816740-1920x1080-desktop-hd-cool-anime-background-image.jpg)',
+            'url(https://moewalls.com/wp-content/uploads/2025/02/thousand-sunny-pirate-ship-one-piece-thumb.jpg)',
+            'url(https://wallpapercat.com/w/full/0/f/4/24693-3840x2160-desktop-4k-jujutsu-kaisen-tv-series-background-photo.jpg)'
+        ],
+        nature: [
+            'url(https://static.vecteezy.com/system/resources/previews/049/855/805/non_2x/nature-background-high-resolution-wallpaper-for-a-serene-and-stunning-view-free-photo.jpg)',
+            'url(https://wallpapers.com/images/featured/nature-reserves-jbfltc74pee2hnxv.jpg)',
+            'url(https://live.staticflickr.com/4266/35401287750_6ece153225_b.jpg)'
+        ],
+        library: [
+            'url(https://wallpapers.com/images/featured/library-zoom-background-log0woj8m3hvf0h8.jpg)',
+            'url(https://www.library.dartmouth.edu/sites/default/files/media-images/TowerRoom.jpg)',
+            'url(https://assets.techrepublic.com/uploads/2021/08/gettyimages-mint-images.jpg)'
+        ],
+        office: [
+            'url(https://www.decorilla.com/online-decorating/wp-content/uploads/2020/11/Clutter-free-zoom-ready-home-office-.jpg)',
+            'url(https://www.decorilla.com/online-decorating/wp-content/uploads/2020/12/Moody-home-office-background-with-builtin-shelves-scaled.jpeg)',
+            'url(https://cdn.prod.website-files.com/65af543d642e0bb78eea2cf5/66324e486200c36002784fe2_1702348628_en-idei-club-p-best-office-pictures-dizain-krasivo-64.jpg)'
+        ],
+        city: [
+            'url(https://blackmorepartnersinc.com/wp-content/uploads/2017/07/chicago-city-wallpaper-background-hd-18668-19220-hd-wallpapers.jpg)',
+            'url(https://m.media-amazon.com/images/I/71XL566B+6L.jpg)',
+            'url(https://wallpaper.dog/large/20537605.jpg)'
+        ],
+        colours: [
+            'url(https://images.unsplash.com/flagged/photo-1593005510329-8a4035a7238f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8eWVsbG93JTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D)',
+            'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsrg6_ZB259ynxghsSD02FYweTf3b3DOcl4w&s)',
+            'url(https://www.solidbackgrounds.com/images/1920x1080/1920x1080-red-solid-color-background.jpg)',
+            'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAuQDCSlsKCATXPvfh7G3EU9vazB5xYojdNQ&s)',
+            'url(https://www.solidbackgrounds.com/images/1920x1080/1920x1080-bright-green-solid-color-background.jpg)',
+            'url(https://img.freepik.com/premium-photo/abstract-blue-light-gradient-blurred-colorful-gradient-background_558873-57843.jpg?semt=ais_hybrid&w=740)'
+        ]
+    };
+
+    const backgroundsDiv = document.getElementById('backgrounds');
+    const backgroundsButton = document.getElementById('backgroundsButton');
+
+
+    backgroundsButton.addEventListener('click', () => {
+        backgroundsDiv.style.display = backgroundsDiv.style.display === 'block' ? 'none' : 'block';
+    });
+
+    function setRandomBackground(category) {
+        const images = backgrounds[category];
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        document.body.style.backgroundImage = randomImage;
+        backgroundsDiv.style.display = 'none';
+    }
+
+    const timeDisplay = document.getElementById("time");
+    const startButton = document.getElementById("startBtn");
+    const resetButton = document.getElementById("resetBtn");
+
+    let timer;
+    let isWorking = true;
+    let secondsRemaining = 25 * 60;
+    let isRunning = false;
+
+    function updateTimeDisplay() {
+        let minutes = Math.floor(secondsRemaining / 60);
+        let seconds = secondsRemaining % 60;
+        timeDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    function startTimer() {
+        if (isRunning) return;
+        isRunning = true;
+
+        timer = setInterval(() => {
+            secondsRemaining--;
+            updateTimeDisplay();
+
+            if (secondsRemaining <= 0) {
+                clearInterval(timer);
+                isRunning = false;
+                isWorking = !isWorking;
+                secondsRemaining = isWorking ? 25 * 60 : 5 * 60;
+            }
+        }, 1000);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        isRunning = false;
+        isWorking = true;
+        secondsRemaining = 25 * 60;
+        updateTimeDisplay();
+    }
+
+    startButton.addEventListener('click', () => {
+        startTimer();
+    });
+
+    resetButton.addEventListener('click', () => {
+        resetTimer();
+    });
+    updateTimeDisplay();
+
+    const pauseButton = document.getElementById("pauseBtn");
+
+    function pauseTimer() {
+        clearInterval(timer);
+        isRunning = false;
+    }
+
+    pauseButton.addEventListener('click', () => {
+        if (isRunning) {
+            pauseTimer();
+            pauseButton.textContent = 'Resume';
+        } else {
+            startTimer();
+            pauseButton.textContent = 'Pause';
+        }
+    });
+
+    const chaosButton = document.getElementById("chaosBtn");
+
+    function setRandomTime() {
+        const randomTime = Math.floor(Math.random() * (43200 - 60 + 1)) + 60;
+        secondsRemaining = randomTime;
+        updateTimeDisplay();
+    }
+
+    chaosButton.addEventListener('click', () => {
+        setRandomTime();
+        if (isRunning) {
+            clearInterval(timer);
+            startTimer();
+        } else {
+            startTimer();
+        }
+    });
+
+    // Handle custom time input
+    const setCustomTimeButton = document.getElementById("setCustomTimeBtn");
+    const customTimeInput = document.getElementById("customTime");
+
+    setCustomTimeButton.addEventListener('click', () => {
+        const customMinutes = parseInt(customTimeInput.value);
+        if (customMinutes && customMinutes > 0) {
+            secondsRemaining = customMinutes * 60;
+            updateTimeDisplay();
+        }
+    });
+</script>
+
+</body>
+</html>

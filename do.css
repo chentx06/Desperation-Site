@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url('pureBlue.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+#backgroundsButton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 60px;
+    border-radius: 8px;
+}
+
+#backgrounds {
+    display: none;
+    position: fixed;
+    top: 120px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#backgrounds button {
+    display: block;
+    margin: 5px 0;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: left;
+}
+
+#backgrounds button:hover {
+    text-decoration: underline;
+}
+
+#timer-container {
+    width: 280px;
+    height: 410px;
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 35%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+}
+
+#time {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+#controls button {
+    width: 110px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+#controls button:hover {
+    background-color: #45a049;
+}
+
+#timer-container header {
+    cursor: move;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0;
+    user-select: none;
+}
+
+.setTimeBox{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+#spotifyContainer12 {
+    width: 280px;
+    padding-top: 0;
+    display: block;
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+iframe {
+    width: 120%;
+    height: 360px;
+    border-radius: 20px;
+    display: block;
+    position: relative;
+    z-index: -1;
+}
+
+#homeButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    font-size: 60px;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 100;
+}
+
+#homeButton:hover {
+    background-color: #45a049;
+}
