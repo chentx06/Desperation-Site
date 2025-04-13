@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="cry.css">
+    <title>Sadness</title>
+</head>
+
+<body>
+    <div class="buttons-container">
+        <button class="sadButton" id = "sadButton">I'm sad</button>
+        <button class="cryButton" id="cryButton" style="display: none;">I want to cry</button>
+        <button class="doneButton" id="doneButton" style="display: none;">I'm done crying.</button>
+        <a href="homePage.html" class="homeButton">Home</a>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p>Sorry that you’re feeling sad right now. It's completely okay to feel this way, sometimes we all need to let it out. Crying can help, and it doesn’t make you weak. It’s a step towards healing. Remember that you are not alone in this. Take your time, and we truly hope you find comfort soon. You're stronger than you know.</p>
+            <button id="closePopup" class="closeBtn">Close</button>
+        </div>
+    </div>
+    <div id="popup2" class="popup">
+        <div class="popup-content">
+            <p>You’ve been through a lot, and you did a good job letting out your emotions. You’ve faced the hardest part, and now it's time to embrace the calm. Remember, it's perfectly fine to take your time. You've already made it through, and that's something to be proud of.❤️‍🩹</p>
+            <button id="closePopup2" class="closeBtn">Close</button>
+        </div>
+    </div>
+
+    <div id="spotifyContainer1" class="spotify-embed-container1" style="display: none;">
+        <iframe src="https://open.spotify.com/embed/playlist/1SkVO2OBTRWJ4XXT6BW5d3?utm_source=generator"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+        </iframe>
+    </div>
+
+    <div id="spotifyContainer2" class="spotify-embed-container2" style="display: none;">
+    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1EIgAzQDnb9ja5?utm_source=generator"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+    </iframe>
+    </div>
+
+    <div id="spotifyContainer3" class="spotify-embed-container3" style="display: none;">
+        <iframe src="https://open.spotify.com/embed/playlist/4ZdTQQNnf7cLvSOnPdYWKa?utm_source=generator"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+        </iframe>
+    </div>
+
+    <script>
+        document.getElementById("sadButton").addEventListener("click", function() {
+            hideButton(sadButton);
+            document.getElementById("popup").style.display = "flex";
+            document.body.style.backgroundImage = "url('sadTired.gif')";
+            document.body.style.backgroundPosition = "center 40%";
+            document.getElementById("cryButton").style.display = "block";
+        });
+
+        document.getElementById("closePopup").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "none";
+        });
+
+        document.getElementById("cryButton").addEventListener("click", function() {
+            document.body.style.backgroundImage = "url('cry.gif')";
+            document.getElementById("spotifyContainer1").style.display = "block";
+            document.getElementById("spotifyContainer2").style.display = "block";
+            document.getElementById("spotifyContainer3").style.display = "block";
+            document.getElementById("cryButton").style.display = "none";
+            document.getElementById("doneButton").style.display = "block";
+        });
+
+        document.getElementById("doneButton").addEventListener("click", function() {
+            document.body.style.backgroundImage = "url('Sad.png')";
+            document.getElementById("popup2").style.display = "flex";
+            document.getElementById("spotifyContainer1").style.display = "none";
+            document.getElementById("spotifyContainer2").style.display = "none";
+            document.getElementById("spotifyContainer3").style.display = "none";
+        });
+        document.getElementById("closePopup2").addEventListener("click", function() {
+            document.getElementById("popup2").style.display = "none";
+            document.getElementById("doneButton").style.display = "none";
+            document.getElementById("sadButton").style.display = "block";
+        });
+
+        function hideButton(button) {
+            button.style.display = 'none';
+        }
+
+    </script>
+
+
+</body>
+
+
+</html>
+
