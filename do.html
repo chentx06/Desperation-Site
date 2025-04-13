@@ -7,7 +7,6 @@
 </head>
 <body>
 
-<!-- Backgrounds Button and Menu -->
 <button id="backgroundsButton">🎨</button>
 <div id="backgrounds">
     <button onclick="setRandomBackground('anime')">Anime</button>
@@ -18,7 +17,6 @@
     <button onclick="setRandomBackground('colours')">Colours</button>
 </div>
 
-<!-- Pomodoro Timer -->
 <div id="timer-container">
     <header>Pomodoro Timer</header>
     <div id="time">25:00</div>
@@ -27,7 +25,6 @@
         <button id="resetBtn">Reset</button>
         <button id="pauseBtn">Pause</button>
         <button id="chaosBtn">Chaos</button>
-        <!-- Custom Time Input -->
         <input type="number" id="customTime" placeholder="Minutes" min="1" class="setTimeBox"/>
         <button id="setCustomTimeBtn" >Set Time</button>
     </div>
@@ -41,9 +38,11 @@
 </div>
 
 <a href="index.html" id="homeButton">Home</a>
+<audio id="alarmSound" src="cheers.mp3" preload="auto"></audio>
+
+
 
 <script>
-    // Background Change Functionality
     const backgrounds = {
         anime: [
             'url(https://wallpapercat.com/w/full/5/3/1/141742-3840x2160-desktop-4k-naruto-wallpaper-photo.jpg)',
@@ -124,6 +123,7 @@
                 isRunning = false;
                 isWorking = !isWorking;
                 secondsRemaining = isWorking ? 25 * 60 : 5 * 60;
+                document.getElementById("alarmSound").play();
             }
         }, 1000);
     }
@@ -138,6 +138,7 @@
 
     startButton.addEventListener('click', () => {
         startTimer();
+        pauseButton.textContent = 'Pause';
     });
 
     resetButton.addEventListener('click', () => {
@@ -171,24 +172,33 @@
     }
 
     chaosButton.addEventListener('click', () => {
+        pauseTimer();
+        pauseButton.textContent = 'Resume';
         setRandomTime();
-        if (isRunning) {
-            clearInterval(timer);
-            startTimer();
-        } else {
-            startTimer();
-        }
     });
 
-    // Handle custom time input
+    startButton.addEventListener('click', () => {
+        startTimer();
+        pauseButton.textContent = 'Pause';
+    });
+
+
     const setCustomTimeButton = document.getElementById("setCustomTimeBtn");
     const customTimeInput = document.getElementById("customTime");
 
     setCustomTimeButton.addEventListener('click', () => {
         const customMinutes = parseInt(customTimeInput.value);
-        if (customMinutes && customMinutes > 0) {
+        const maxTimeInMinutes = 525600;
+        const maxTimeInSeconds = maxTimeInMinutes * 60;
+
+        if (customMinutes && customMinutes > 0 && customMinutes <= maxTimeInMinutes) {
             secondsRemaining = customMinutes * 60;
             updateTimeDisplay();
+
+            pauseTimer();
+            pauseButton.textContent = 'Resume';
+        } else {
+            alert(`Please enter a time between 1 minute and ${maxTimeInMinutes} minutes.`);
         }
     });
 </script>
