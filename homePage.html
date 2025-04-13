@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Desperation Site</title>
+    <link rel="stylesheet" href="homePage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Codystar:wght@300;400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Codystar:wght@300;400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="fullscreen-section fade-in">
+    <img src="despGifReversedFadeDelay.gif" class="full-image" alt="GIF Background">
+    <div class="centered-text">Welcome to the Desperation Site</div>
+    <div class="bottom-text">A Place For The Desperate</div>
+
+    <div class="side-gifs">
+        <img src="redArrow.gif" class="side-gif left" alt="Left Arrow">
+        <img src="redArrow.gif" class="side-gif right" alt="Right Arrow">
+    </div>
+</div>
+
+<div class="fullscreen-section fade-in">
+    <div class="image-container">
+        <img src="reachOutHand.jpg" class="full-image" alt="Image with buttons">
+        <div class="button-container">
+            <div class="button-row">
+<!--                <a href="exercise.html" class="custom-button fade-in">Exercise</a>-->
+                <a href="cry.html" class="custom-button fade-in">Cry</a>
+<!--                <a href= "washroom.html" class="custom-button fade-in">Lavatory</a>-->
+            </div>
+            <div class="button-row">
+                <a href= "music2.html" class="custom-button fade-in">Music</a>
+<!--                <a href= "nothing.html" class="custom-button fade-in">Nothing</a>-->
+                <a href= "scream.html" class="custom-button fade-in">Scream</a>
+            </div>
+            <div class="button-row">
+                <a href= "sigh.html" class="custom-button fade-in">Sigh</a>
+                <a href= "weeb.html" class="custom-button fade-in">Weeb</a>
+                <a href= "do.html" class="custom-button fade-in">Work</a>
+            </div>
+            <div class="centered-bottom-button-container">
+                <button id="randomButton" class="centered-bottom-button fade-in">Anywhere</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // stop observing once visible
+            }
+        });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    document.getElementById("randomButton").addEventListener("click", function () {
+        const pages = [
+            "cry.html",
+            // "exercise.html",
+            // "washroom.html",
+            "sigh.html",
+            // "nothing.html",
+            "weeb.html",
+            "scream.html",
+            "music2.html",
+            "do.html"
+        ];
+        const randomPage = pages[Math.floor(Math.random() * pages.length)];
+        window.location.href = randomPage;
+    });
+
+</script>
+
+</body>
+</html>
