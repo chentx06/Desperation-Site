@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang ="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset ="UTF-8">
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weeb</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="weeb.css">
+    <link href ="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+    <link rel ="stylesheet" href="weeb.css">
 </head>
 <body>
 
-<div class="video-background">
-    <video id="background-video" loop>
+<div class ="video-background">
+    <video id ="background-video" loop>
     </video>
 </div>
 
-<div class="content">
+<div class ="content">
     <h1>Welcome to some motivation!</h1>
     <p>Press for a surprise!</p>
-    <button id="start-button">Let's Go!</button>
+    <button id ="start-button">Let's Go!</button>
 </div>
-<a href="index.html" class="home-button">Home</a>
+<a href= "index.html" class ="home-button">Home</a>
 
 
 <script>
+    // quote and video in array to be plaed
     const mediaSources = [
         {
             video: 'JUJUTSU%20KAISEN%20-%20Ending%20_%20Lost%20in%20Paradise%20feat.%20AKLO.mp4',
@@ -46,20 +47,21 @@
         }
     ];
 
+    // randomly get the one vide and quote
     function getRandomMedia() {
         const randomIndex = Math.floor(Math.random() * mediaSources.length);
         return mediaSources[randomIndex];
     }
 
+    // when this is clicked, first make the video the background and play, and give us the quote
     document.getElementById('start-button').addEventListener('click', function() {
-        const { video, audio, quote } = getRandomMedia();
+        const { video, quote } = getRandomMedia();
 
         const videoElement = document.getElementById('background-video');
         videoElement.innerHTML = `<source src="${video}" type="video/mp4">`;
 
         videoElement.load();
         videoElement.play();
-
         alert(quote);
     });
 </script>
