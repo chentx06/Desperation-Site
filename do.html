@@ -7,42 +7,47 @@
 </head>
 <body>
 
+<!--background options-->
 <button id="backgroundsButton">🎨</button>
-<div id="backgrounds">
-    <button onclick="setRandomBackground('anime')">Anime</button>
-    <button onclick="setRandomBackground('nature')">Nature</button>
-    <button onclick="setRandomBackground('library')">Library</button>
-    <button onclick="setRandomBackground('office')">Office</button>
-    <button onclick="setRandomBackground('city')">City</button>
-    <button onclick="setRandomBackground('colours')">Colours</button>
+<div id ="backgrounds">
+    <button onclick ="setRandomBackground('anime')">Anime</button>
+    <button onclick = "setRandomBackground('nature')">Nature</button>
+    <button onclick ="setRandomBackground('library')">Library</button>
+    <button onclick ="setRandomBackground('office')">Office</button>
+    <button onclick ="setRandomBackground('city')">City</button>
+    <button onclick ="setRandomBackground('colours')">Colours</button>
 </div>
 
+<!--everything for timer is here-->
 <div id="timer-container">
     <header>Pomodoro Timer</header>
-    <div id="time">25:00</div>
-    <div id="controls">
-        <button id="startBtn">Start</button>
-        <button id="resetBtn">Reset</button>
-        <button id="pauseBtn">Pause</button>
-        <button id="chaosBtn">Chaos</button>
-        <input type="number" id="customTime" placeholder="Minutes" min="1" class="setTimeBox"/>
-        <button id="setCustomTimeBtn" >Set Time</button>
+    <div id ="time">25:00</div>
+    <div id ="controls">
+        <button id ="startBtn">Start</button>
+        <button id ="resetBtn">Reset</button>
+        <button id ="pauseBtn">Pause</button>
+        <button id ="chaosBtn">Chaos</button>
+        <input type ="number" id="customTime" placeholder="Minutes" min="1" class="setTimeBox"/>
+        <button id ="setCustomTimeBtn" >Set Time</button>
     </div>
 </div>
 
-<div id="spotifyContainer12" class="spotify-embed-container">
-    <iframe src="https://open.spotify.com/embed/playlist/09WR21875BqtXHEJFaqWYG?utm_source=generator"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
+<!--playlist-->
+<div id ="spotifyContainer12" class="spotify-embed-container">
+    <iframe src ="https://open.spotify.com/embed/playlist/09WR21875BqtXHEJFaqWYG?utm_source=generator"
+            allow ="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading ="lazy">
     </iframe>
 </div>
 
-<a href="index.html" id="homeButton">Home</a>
-<audio id="alarmSound" src="cheers.mp3" preload="auto"></audio>
-
+<a href ="index.html" id ="homeButton">Home</a>
+<!--if timer goes out the sound to play-->
+<audio id ="alarmSound" src="cheers.mp3" preload="auto"></audio>
 
 
 <script>
+
+    // array of backgrounds
     const backgrounds = {
         anime: [
             'url(https://wallpapercat.com/w/full/5/3/1/141742-3840x2160-desktop-4k-naruto-wallpaper-photo.jpg)',
@@ -79,15 +84,16 @@
             'url(https://img.freepik.com/premium-photo/abstract-blue-light-gradient-blurred-colorful-gradient-background_558873-57843.jpg?semt=ais_hybrid&w=740)'
         ]
     };
-
+    // going to be used later
     const backgroundsDiv = document.getElementById('backgrounds');
     const backgroundsButton = document.getElementById('backgroundsButton');
 
-
+    // when button is clicked, display background options
     backgroundsButton.addEventListener('click', () => {
         backgroundsDiv.style.display = backgroundsDiv.style.display === 'block' ? 'none' : 'block';
     });
 
+    // make background random
     function setRandomBackground(category) {
         const images = backgrounds[category];
         const randomImage = images[Math.floor(Math.random() * images.length)];
@@ -95,29 +101,32 @@
         backgroundsDiv.style.display = 'none';
     }
 
+
     const timeDisplay = document.getElementById("time");
     const startButton = document.getElementById("startBtn");
     const resetButton = document.getElementById("resetBtn");
-
     let timer;
     let isWorking = true;
     let secondsRemaining = 25 * 60;
     let isRunning = false;
 
+    // changing time separating min and sec
     function updateTimeDisplay() {
         let minutes = Math.floor(secondsRemaining / 60);
         let seconds = secondsRemaining % 60;
+        // formatting
         timeDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 
+    //when timer starts, if its running dont start on new
     function startTimer() {
         if (isRunning) return;
+        //if not running yet make it run & update new time
         isRunning = true;
-
         timer = setInterval(() => {
             secondsRemaining--;
             updateTimeDisplay();
-
+            //when no time left, play audio
             if (secondsRemaining <= 0) {
                 clearInterval(timer);
                 isRunning = false;
@@ -128,6 +137,7 @@
         }, 1000);
     }
 
+    //when reset is clicked just reset to 25 min and stop running
     function resetTimer() {
         clearInterval(timer);
         isRunning = false;
@@ -140,7 +150,6 @@
         startTimer();
         pauseButton.textContent = 'Pause';
     });
-
     resetButton.addEventListener('click', () => {
         resetTimer();
     });
@@ -148,6 +157,7 @@
 
     const pauseButton = document.getElementById("pauseBtn");
 
+    //when pausing just stop it from running by cancelling setinterval temporarily
     function pauseTimer() {
         clearInterval(timer);
         isRunning = false;
@@ -163,9 +173,11 @@
         }
     });
 
+    // my FAVORITE
     const chaosButton = document.getElementById("chaosBtn");
 
     function setRandomTime() {
+        //max time 12 hours, least 1 min
         const randomTime = Math.floor(Math.random() * (43200 - 60 + 1)) + 60;
         secondsRemaining = randomTime;
         updateTimeDisplay();
@@ -182,10 +194,9 @@
         pauseButton.textContent = 'Pause';
     });
 
-
+    //if the user wants to choose time themselves, however not more than a year.
     const setCustomTimeButton = document.getElementById("setCustomTimeBtn");
     const customTimeInput = document.getElementById("customTime");
-
     setCustomTimeButton.addEventListener('click', () => {
         const customMinutes = parseInt(customTimeInput.value);
         const maxTimeInMinutes = 525600;
