@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang ="en">
 <head>
-    <meta charset="UTF-8">
+
+<!-- Home page-->
+    <meta charset ="UTF-8">
     <title>Desperation Site</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Codystar:wght@300;400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Codystar:wght@300;400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel ="stylesheet" href="index.css">
+    <link rel ="preconnect" href="https://fonts.googleapis.com">
+    <link rel ="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href ="https://fonts.googleapis.com/css2?family=Codystar:wght@300;400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href ="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Codystar:wght@300;400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="fullscreen-section fade-in">
-    <img src="despGifReversedFadeDelay.gif" class="full-image" alt="GIF Background">
-    <div class="centered-text">Welcome to the Desperation Site</div>
-    <div class="bottom-text">A Place For The Desperate</div>
-
+<!--fullscreen class and fade class-->
+<div class ="fullscreen-section fade-in">
+    <img src = "despGifReversedFadeDelay.gif" class ="full-image">
+    <div class ="centered-text">Welcome to the Desperation Site</div>
+    <div class ="bottom-text">A Place For The Desperate</div>
     <div class="side-gifs">
-        <img src="redArrow.gif" class="side-gif left" alt="Left Arrow">
-        <img src="redArrow.gif" class="side-gif right" alt="Right Arrow">
+        <img src ="redArrow.gif" class ="side-gif left" alt ="Left arrow">
+        <img src="redArrow.gif" class ="side-gif right" alt ="Right arrow">
     </div>
 </div>
 
 <div class="fullscreen-section fade-in">
     <div class="image-container">
         <img src="reachOutHand.jpg" class="full-image" alt="Image with buttons">
+<!--        buttons on image-->
+<!--        some were not implemented-->
         <div class="button-container">
             <div class="button-row">
 <!--                <a href="exercise.html" class="custom-button fade-in">Exercise</a>-->
@@ -49,18 +53,24 @@
 </div>
 
 <script>
+    // applies to all fade ins
     const fadeElements = document.querySelectorAll('.fade-in');
 
+    // detecting each thing moving into view
     const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
+        entries.forEach (entry => {
+            // if is in view then make it visible using visible class and that's it
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // stop observing once visible
+                observer.unobserve(entry.target);
             }
         });
+        // how much of that element is visible
     }, { threshold: 0.1 });
+    // pay attention to all of elements
     fadeElements.forEach(el => observer.observe(el));
 
+    // When anywhere is clicked, it takes to the page thrown
     document.getElementById("randomButton").addEventListener("click", function () {
         const pages = [
             "cry.html",
@@ -74,6 +84,7 @@
             "do.html"
         ];
         const randomPage = pages[Math.floor(Math.random() * pages.length)];
+        // jump to corresponding site
         window.location.href = randomPage;
     });
 
