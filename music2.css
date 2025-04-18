@@ -4,6 +4,7 @@ html, body {
     height: 100%;
 }
 
+/*space out the items*/
 .image-section {
     position: relative;
     background-size: cover;
@@ -51,7 +52,7 @@ html, body {
 }
 
 
-
+/*to use for background*/
 .img1 {
     background-image: url('cloudbg.jpg');
 }
