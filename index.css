@@ -6,8 +6,10 @@
 
 html, body {
     height: 100%;
+    /*no horizontal scroll*/
     overflow-x: hidden;
     background-color: black;
+    /*smooth scrolling*/
     scroll-behavior: smooth;
 }
 
@@ -29,6 +31,7 @@ html, body {
     position: absolute;
     top: 20%;
     left: 50%;
+    /*moves depending on dimensions*/
     transform: translate(-50%, -50%);
     font-family: 'Courier New', Courier, monospace;
     color: #ffffff;
@@ -36,6 +39,7 @@ html, body {
     text-transform: uppercase;
     letter-spacing: 3px;
     text-align: center;
+    /*1 rem = 16px*/
     padding: 1.5rem 2rem;
     background-color: rgba(0, 0, 0, 0.6);
     border: 2px solid #ffffff;
@@ -60,6 +64,7 @@ html, body {
     position: absolute;
     bottom: -50px;
     width: 100%;
+    /*space out them*/
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
@@ -84,6 +89,7 @@ html, body {
     z-index: 2;
 }
 
+/*For each row do this*/
 .button-row {
     display: flex;
     justify-content: space-evenly;
@@ -92,6 +98,7 @@ html, body {
     max-width: 1300px;
 }
 
+/*between the buttons do this*/
 .custom-button {
     background-color: black;
     padding: 50px 100px;
@@ -113,6 +120,7 @@ html, body {
     text-decoration: none;
 }
 
+/*Rainbow glow behind button*/
 .custom-button:before {
     content: "";
     background: linear-gradient(45deg, red, orange, yellow, green, cyan, blue, pink, red);
@@ -130,6 +138,7 @@ html, body {
     opacity: 1;
 }
 
+/*black base for contrast*/
 .custom-button:after {
     content: "";
     z-index: -1;
@@ -142,11 +151,13 @@ html, body {
     border-radius: 30px;
 }
 
+/*make larger when hovering*/
 .custom-button:hover {
     background-color: #555;
     font-size: 45px;
     max-height: 130px;
 }
+
 
 .centered-bottom-button-container {
     position: absolute;
@@ -174,18 +185,21 @@ html, body {
     font-size: 110px;
 }
 
+/*sliding rainbow background left and right*/
 @keyframes glowing {
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
 
+/*make invisible and down*/
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 2s ease, transform 2s ease;
 }
 
+/*fades in moving up to original position*/
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
