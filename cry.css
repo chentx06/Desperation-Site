@@ -61,6 +61,7 @@ body {
     transform: scale(1.05);
 }
 
+/*black popup taking full screen making semi transparent*/
 .popup {
     display: none;
     position: fixed;
