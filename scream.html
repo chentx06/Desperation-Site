@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Scream Into the Void</title>
-    <link rel="stylesheet" href="scream.css">
+    <link rel ="stylesheet" href ="scream.css">
 </head>
 <body>
 
+<!--All options of screams and textbox-->
 <h1>Scream Into the Void</h1>
-<input type="text" id="screamText" placeholder="Type your scream here...">
-<select id="screamType">
-    <option value="goatScream.mp3">Normal Scream</option>
-    <option value="willhelmScream.mp3">Wilhelm Scream</option>
-    <option value="guyScream.mp3">Guy Scream</option>
-    <option value="girlScream.mp3">Girl Scream</option>
-    <option value="fnafScream.mp3">Fnaf Scream</option>
-    <option value="horrorScream.mp3">Horror Scream</option>
+<input type ="text" id="screamText" placeholder="Type your scream here...">
+<select id = "screamType">
+    <option value ="goatScream.mp3">Normal Scream</option>
+    <option value ="willhelmScream.mp3">Wilhelm Scream</option>
+    <option value ="guyScream.mp3">Guy Scream</option>
+    <option value ="girlScream.mp3">Girl Scream</option>
+    <option value ="fnafScream.mp3">Fnaf Scream</option>
+    <option value ="horrorScream.mp3">Horror Scream</option>
 </select>
-<button id="screamButton">SCREAM</button>
-<a href="index.html" id="homeButton">Home</a>
-
+<!--buttons-->
+<button id ="screamButton">SCREAM</button>
+<a href ="index.html" id="homeButton">Home</a>
 
 <script>
 
+    // alerts to show after screaming randomly
     const messages = [
         "Glad nobody heard that!",
         "Feel better now?",
@@ -35,27 +37,35 @@
         "The universe screamed back a little."
     ];
 
+    // when button is clicked text flies and we scream
     document.getElementById('screamButton').addEventListener('click', () => {
+        // get text and sound depending on user choice
         const text = document.getElementById('screamText').value;
         const sound = document.getElementById('screamType').value;
+        // if no text dont do anything
         if (!text) return;
 
+        //essentially creates new div element making it able to appear on page
         const screamDiv = document.createElement('div');
         screamDiv.textContent = text;
+        //its now in this class
         screamDiv.className = 'scream-animation';
+        //puts in on page
         document.body.appendChild(screamDiv);
 
+        //after 1.5s remove it from page and pop the random message
         setTimeout(() => {
             screamDiv.remove();
             const randomMessage = messages[Math.floor(Math.random() * messages.length)];
             alert(randomMessage);
         }, 1500);
 
+        //also play the sound chosen and set textbox to nothing again to be used
         const audio = new Audio(sound);
         audio.play();
-
         document.getElementById('screamText').value = '';
     });
+
 </script>
 </body>
 </html>
