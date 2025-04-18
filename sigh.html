@@ -8,20 +8,23 @@
 </head>
 
 <body>
+<!--visuals-->
     <h1>Take a Deep Sigh</h1>
     <div id = "breathingCircle"></div>
-    <button id="startButton">Breathe</button>
-    <button id="stopButton" style="display: none;">Stop</button>
-    <a href="index.html" id="homeButton">Home</a>
+    <button id ="startButton">Breathe</button>
+    <button id ="stopButton" style ="display: none;">Stop</button>
+    <a href ="index.html" id="homeButton">Home</a>
 
 
 
     <script>
+        //one inhaling audio, one for exhaling
         const inhaleAudio = new Audio('breathIn.mp3');
         const exhaleAudio = new Audio('breathOut.mp3');
         let isInhale = true;
         let breathInterval = null;
 
+        //keep breathing one after the other
         function breatheCycle() {
             if (isInhale) {
                 inhaleAudio.play();
@@ -31,6 +34,7 @@
             isInhale = !isInhale;
         }
 
+        //start breathing
         document.getElementById('startButton').addEventListener('click', () => {
             breatheCycle();
             breathInterval = setInterval(breatheCycle, 4000);
@@ -38,6 +42,7 @@
             document.getElementById('stopButton').style.display = 'inline-block';
         });
 
+        // stop breathing
         document.getElementById('stopButton').addEventListener('click', () => {
             clearInterval(breathInterval);
             inhaleAudio.pause();
